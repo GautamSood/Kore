@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const ErrorHandler = require("../util/errorhandler")
 const { startOfToday, endOfToday } = require("date-fns");
 
-exports.updateMilkOrderService = async (currentOrder, previousOrder,orderid) => {
+exports.updateMilkOrderService = async (currentOrder, previousOrder,orderid,customernumber) => {
     const session = await mongoose.startSession();
     try {
         session.startTransaction();
@@ -25,13 +25,14 @@ exports.updateMilkOrderService = async (currentOrder, previousOrder,orderid) => 
             const orderQuantity = {
                 orderQuantity : currentOrder
             }
-            const updatedOrder = await Order.findByIdAndUpdate(
+            let updatedOrder = await Order.findByIdAndUpdate(
               orderid,
               orderQuantity,
               { new: true, runValidators: true }
-            );
+          );
+         
              await session.commitTransaction();
-             return updatedOrder;
+             
         }
     } catch(error) {
          await session.abortTransaction();

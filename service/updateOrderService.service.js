@@ -33,7 +33,12 @@ exports.updateOrderService = async (req) => {
                     throw new ErrorHandler("no such order found!", 404);
                 }
                 if (order.orderStatus === "placed") {
-                    const updatedMilk = await updateMilkOrderService(filteredObj.orderQuantity, previousQuantity,id); // IMPLEMENT
+                    const updatedMilk = await updateMilkOrderService(
+                      filteredObj.orderQuantity,
+                      previousQuantity,
+                      id,
+                      
+                    ); // IMPLEMENT
                     console.log(updatedMilk);
                 }
                 else {
@@ -43,8 +48,9 @@ exports.updateOrderService = async (req) => {
                 }
             
         }
+        
         const updatedOrder = await Order.findByIdAndUpdate(id, filteredObj.customerContact, { new: true, runValidators: true });
-
+        console.log(updatedOrder);
         return updatedOrder;
     } catch (error) {
 

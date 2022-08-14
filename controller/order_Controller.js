@@ -112,6 +112,31 @@ exports.getOrderDetails = CatchAsyncError( async(req, res, next) => {
  
 
 //update order -- Admin 
+/**
+ * @swagger
+ * /update/{id}:
+ *   patch:
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        type: string
+ *        description: The order ID.
+ *      - in: body
+ *        name: order
+ *        description: Update order contactNumber or Quantity
+ *        schema:
+ *          type: object
+ *          properties:
+ *            orderQuantity:
+ *              type: number
+  *            customerContact:
+ *              type: string
+ *            
+ *     responses:
+ *       200:
+ *         description: updated
+ */
 exports.updateOrders = CatchAsyncError(async (req, res) => {
   const updatedOrder = await updateOrderService(req);
   return res.status(200).json({
