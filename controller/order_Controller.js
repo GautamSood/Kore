@@ -7,7 +7,12 @@ const { deleteOrderService } = require("../service/deleteOrderService.service");
 const { updateOrderService } = require("../service/updateOrderService.service");
 
 
-
+/**
+ * @swagger
+ * tags:
+ *      name: Order
+ *      description: The order API endpoints
+ */
 
 //create Order
 
@@ -180,3 +185,6 @@ exports.deleteOrders = CatchAsyncError(async (req, res, next) => {
       message: "order deleted"
     });
 });
+
+
+

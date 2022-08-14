@@ -12,7 +12,7 @@ exports.updateMilkOrderService = async (currentOrder, previousOrder,orderid) => 
           createdAt: { $gte: startOfToday(), $lt: endOfToday() },
         });
         if (((getMilk.capacity + previousOrder) - currentOrder) < 0) {
-            throw new Error("quantity is exceeding the capacity!");
+            throw new ErrorHandler("quantity is exceeding the capacity!", 400);
         }
         else {
             const capacity = {
@@ -33,9 +33,9 @@ exports.updateMilkOrderService = async (currentOrder, previousOrder,orderid) => 
              await session.commitTransaction();
              return updatedOrder;
         }
-    } catch {
+    } catch(error) {
          await session.abortTransaction();
          console.log(error);
-         throw new BaseError("Something went wrong", 500);
+         throw new ErrorHandler("Something went wrong", 500);
     }
 }

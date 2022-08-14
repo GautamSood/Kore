@@ -7,12 +7,16 @@ const {
   getOrderDetails,
   updateStatus
 } = require("../controller/order_Controller");
+const {
+  getCapacity
+} = require("../controller/milk_Controller");
 
 const router = express.Router();
 
 //get requests
 router.route("/orders").get(getAllOrders);
 router.route("/orders/:id").get(getOrderDetails);
+router.get("/checkCapacity/:date", getCapacity);
 
 //post requests
 router.route("/add").post(createOrder);
