@@ -46,7 +46,7 @@ exports.updateOrderService = async (req) => {
                       `Cannot update the quantity as order is ${order.orderStatus} state!, 403`
                     );
               
-                }
+                } 
             
         }
         
