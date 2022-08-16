@@ -43,8 +43,9 @@ exports.updateOrderService = async (req) => {
                 }
                 else {
                     throw new ErrorHandler(
-                      `Cannot update quantity as order is ${order.orderStatus} state!, 403`
+                      `Cannot update the quantity as order is ${order.orderStatus} state!, 403`
                     );
+              
                 }
             
         }
